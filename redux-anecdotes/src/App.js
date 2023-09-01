@@ -16,10 +16,16 @@ const App = () => {
     dispatch(createAnecdote(anecdote))
   }
   
+  const sortByVotes = (a ,b) => {
+    console.log(a, b)
+    return Number(a.votes) > Number(b.votes) ? -1 : 1
+  }
+  
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map(anecdote =>
+
+      {anecdotes.sort(sortByVotes).map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -30,6 +36,7 @@ const App = () => {
           </div>
         </div>
       )}
+
       <h2>create new</h2>
       <form onSubmit={anecdoteForm}>
         <div><input name="anecdote" /></div>
