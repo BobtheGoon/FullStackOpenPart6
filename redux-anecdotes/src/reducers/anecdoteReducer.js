@@ -27,8 +27,12 @@ const anecdoteSlice = createSlice({
 
   reducers: {
     voteAnecdote (state, action) {
-      const anecdoteToVote = state.find(anecdote => anecdote.id === action.payload.id)
+      //Get anecdotes from IMMER state
+      const anecdotes = JSON.parse(JSON.stringify(state))
+      //Find correct anecdote to vote
+      const anecdoteToVote = anecdotes.find(anecdote => anecdote.id === action.payload)
       anecdoteToVote.votes += 1
+      
       return state.map(anecdote => anecdote.id !== anecdoteToVote.id ? anecdote : anecdoteToVote)
 
     },
