@@ -14,7 +14,7 @@ const AnectodeList = () => {
   const vote = (anecdote) => {
     dispatch(voteNotification(anecdote))
     dispatch(voteAnecdote(anecdote.id))
-    dispatch(clearNotification())
+    setTimeout(() => dispatch(clearNotification()), 5000)
   }
   
   const sortByVotes = (a ,b) => {

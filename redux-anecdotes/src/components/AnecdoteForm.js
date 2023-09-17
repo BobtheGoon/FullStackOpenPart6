@@ -11,7 +11,7 @@ const AnecdoteForm = () => {
     const anecdote = e.target.anecdote.value
     dispatch(newAnecdoteNotification(anecdote))
     dispatch(createAnecdote(anecdote))
-    dispatch(clearNotification())
+    setTimeout(() => dispatch(clearNotification()), 5000)
   }
 
   return (
