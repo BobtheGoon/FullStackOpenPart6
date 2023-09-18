@@ -1,12 +1,6 @@
 import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
 
-import { clearNotification } from "../reducers/notificationReducer"
-
-
-const Notification = () => {
-  const dispatch = useDispatch()
-  
+const Notification = () => {  
   const notification = useSelector(({notification}) => {
     return notification
   })
@@ -16,7 +10,6 @@ const Notification = () => {
     border: 'solid',
     padding: 10,
     borderWidth: 1,
-    // display: 'none'
   }
   
   if (notification === null) return null
