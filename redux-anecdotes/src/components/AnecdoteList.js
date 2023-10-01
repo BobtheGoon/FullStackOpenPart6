@@ -13,7 +13,7 @@ const AnectodeList = () => {
 
   const vote = (anecdote) => {
     dispatch(voteNotification(anecdote))
-    dispatch(voteAnecdote(anecdote.id))
+    dispatch(voteAnecdote(anecdote))
     setTimeout(() => dispatch(clearNotification()), 5000)
   }
   

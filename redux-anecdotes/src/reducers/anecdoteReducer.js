@@ -7,7 +7,7 @@ const anecdoteSlice = createSlice({
   initialState: [],
 
   reducers: {
-    voteAnecdote (state, action) {
+    updateVote (state, action) {
       //Get anecdotes from IMMER state
       const anecdotes = JSON.parse(JSON.stringify(state))
       //Find correct anecdote to vote
@@ -28,7 +28,7 @@ const anecdoteSlice = createSlice({
   }
 })
 
-export const {voteAnecdote, appendAnecdote, setAnecdotes} = anecdoteSlice.actions
+export const {updateVote, appendAnecdote, setAnecdotes} = anecdoteSlice.actions
 
 export const initializeAnecdotes = () => {
   return async dispatch => {
@@ -41,6 +41,13 @@ export const createAnecdote = (anecdote) => {
   return async dispatch => {
     const newAnecdote = await anecdoteService.createNew(anecdote)
     dispatch(appendAnecdote(newAnecdote))
+  }
+}
+
+export const voteAnecdote = (anecdote) => {
+  return async dispatch => {
+    const votedAnecdote = await anecdoteService.addVote(anecdote)
+    dispatch(updateVote(votedAnecdote.id))
   }
 }
 
