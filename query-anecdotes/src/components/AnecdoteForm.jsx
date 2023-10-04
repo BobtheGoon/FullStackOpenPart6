@@ -19,6 +19,13 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
+
+    if (content.length < 5) {
+      dispatch({type:'SET', payload:`Too shord anecdote, must have length 5 or more`})
+      setTimeout(() => dispatch({type:'CLEAR'}), 5000)
+      return
+    }
+
     newAnecdoteMutation.mutate({content})
     
     dispatch({type:'SET', payload:`Added anecdote ${content}`})
